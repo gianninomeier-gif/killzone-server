@@ -98,6 +98,11 @@ wss.on('connection', (ws) => {
 
     switch (m.type) {
 
+      case 'GET_MARKET': {
+        send(ws, { type: 'MARKET_UPDATE', market });
+        break;
+      }
+
       case 'CREATE_ROOM': {
         const code = Math.random().toString(36).slice(2, 6).toUpperCase();
         rooms[code] = {
